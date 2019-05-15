@@ -11,13 +11,16 @@ import edu.kis.powp.appbase.Application;
 import edu.kis.powp.jobs2d.command.gui.CommandManagerWindow;
 import edu.kis.powp.jobs2d.command.gui.CommandManagerWindowCommandChangeObserver;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDriverAdapter;
+import edu.kis.powp.jobs2d.drivers.adapter.SpyDriverAdapter;
 import edu.kis.powp.jobs2d.events.SelectLoadSecretCommandOptionListener;
 import edu.kis.powp.jobs2d.events.SelectRunCurrentCommandOptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigure2OptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
+import edu.kis.powp.jobs2d.events.SelectTracedCommandOptionListener;
 import edu.kis.powp.jobs2d.features.CommandsFeature;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 import edu.kis.powp.jobs2d.features.DriverFeature;
+import edu.kis.powp.jobs2d.features.TracedCommandsFeature;
 
 public class TestJobs2dApp {
 	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -44,9 +47,8 @@ public class TestJobs2dApp {
 	 */
 	private static void setupCommandTests(Application application) {
 		application.addTest("Load secret command", new SelectLoadSecretCommandOptionListener());
-
+		application.addTest("Load traced command", new SelectTracedCommandOptionListener(TracedCommandsFeature.getTracedCommands()));
 		application.addTest("Run command", new SelectRunCurrentCommandOptionListener(DriverFeature.getDriverManager()));
-
 	}
 
 	/**
@@ -65,6 +67,10 @@ public class TestJobs2dApp {
 
 		driver = new LineDriverAdapter(drawerController, LineFactory.getSpecialLine(), "special");
 		DriverFeature.addDriver("Special line Simulator", driver);
+		
+		driver = new SpyDriverAdapter(TracedCommandsFeature.getTracedCommands());
+		DriverFeature.addDriver("Spy driver", driver);
+		
 		DriverFeature.updateDriverInfo();
 	}
 
@@ -106,7 +112,7 @@ public class TestJobs2dApp {
 				Application app = new Application("Jobs 2D");
 				DrawerFeature.setupDrawerPlugin(app);
 				CommandsFeature.setupCommandManager();
-
+				TracedCommandsFeature.setupTracedCommandManager();
 				DriverFeature.setupDriverPlugin(app);
 				setupDrivers(app);
 				setupPresetTests(app);
