@@ -38,6 +38,10 @@ public class DriverFeature {
 	/**
 	 * Update driver info.
 	 */
+
+	public static Application getApp() {
+		return app;
+	}
 	/*
 	public static void updateDriverInfo() {
 		app.updateInfo(driverManager.getCurrentDriver().toString());
