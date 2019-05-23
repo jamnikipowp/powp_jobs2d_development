@@ -20,4 +20,8 @@ public class TracedCommandsFeature {
 	public static List<DriverCommand>  getTracedCommands() {
 		return spyDriverAdapter.getTracedCommandsList();
 	}
+	
+	public static void clearTracedCommands() {
+		spyDriverAdapter.clearTracedCommandList();
+	}
 }

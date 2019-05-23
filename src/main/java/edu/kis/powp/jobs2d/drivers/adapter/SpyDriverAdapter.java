@@ -29,4 +29,8 @@ public class SpyDriverAdapter implements Job2dDriver {
 	public void operateTo(int x, int y) {
 		tracedCommandsList.add(new OperateToCommand(x, y));
 	}
+	
+	public void clearTracedCommandList() {
+		this.tracedCommandsList.clear();
+	}
 }
