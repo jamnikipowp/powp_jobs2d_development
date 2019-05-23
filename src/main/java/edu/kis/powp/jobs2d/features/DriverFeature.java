@@ -42,9 +42,9 @@ public class DriverFeature {
 	public static Application getApp() {
 		return app;
 	}
-	/*
+
 	public static void updateDriverInfo() {
-		app.updateInfo(driverManager.getCurrentDriver().toString());
+		driverManager.getPublisher().addSubscriber(new Observable(driverManager));
 	}
-*/
+
 }
