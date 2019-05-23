@@ -18,6 +18,7 @@ public class DriverManager {
 	 */
 	public synchronized void setCurrentDriver(Job2dDriver driver) {
 		currentDriver = driver;
+		publisher.notifyObservers();
 	}
 
 	/**
