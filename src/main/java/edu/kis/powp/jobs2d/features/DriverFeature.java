@@ -44,7 +44,7 @@ public class DriverFeature {
 	}
 
 	public static void updateDriverInfo() {
-		driverManager.getPublisher().addSubscriber(new Observable(driverManager));
+		app.updateInfo(driverManager.getCurrentDriver().toString());
 	}
 
 }
