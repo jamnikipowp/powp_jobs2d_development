@@ -22,6 +22,9 @@ public class DriverFeature {
 	public static void setupDriverPlugin(Application application) {
 		app = application;
 		app.addComponentMenu(DriverFeature.class, "Drivers");
+
+		DriverChangeObserver driverObserver = new DriverChangeObserver(getDriverManager());
+		driverManager.getPublisher().addSubscriber(driverObserver);
 	}
 
 	/**

@@ -4,17 +4,17 @@ import edu.kis.powp.appbase.Application;
 import edu.kis.powp.jobs2d.drivers.DriverManager;
 import edu.kis.powp.observer.Subscriber;
 
-public class Observable implements Subscriber {
+public class DriverChangeObserver implements Subscriber {
 
     private DriverManager driverManager;
     private Application app = DriverFeature.getApp();
 
-    public Observable(DriverManager driverManager){
+    public DriverChangeObserver(DriverManager driverManager){
         this.driverManager = driverManager;
     }
 
     @Override
     public void update() {
-        DriverFeature.getApp().updateInfo(driverManager.getCurrentDriver().toString());
+        DriverFeature.updateDriverInfo();
     }
 }
