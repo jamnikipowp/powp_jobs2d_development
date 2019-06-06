@@ -1,19 +1,27 @@
 package edu.kis.powp.jobs2d.features;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import edu.kis.powp.jobs2d.command.DriverCommand;
+import edu.kis.powp.jobs2d.drivers.adapter.SpyDriverAdapter;
 
 public class TracedCommandsFeature {
 
-	static List<DriverCommand> tracedCommandsList;
+	private static SpyDriverAdapter spyDriverAdapter;
+
+	public static SpyDriverAdapter getSpyDriverAdapter() {
+		return spyDriverAdapter;
+	}
 
 	public static void setupTracedCommandManager() {
-		tracedCommandsList = new ArrayList<DriverCommand>();;
+		spyDriverAdapter = new SpyDriverAdapter();
 	}
 
 	public static List<DriverCommand>  getTracedCommands() {
-		return tracedCommandsList;
+		return spyDriverAdapter.getTracedCommandsList();
+	}
+	
+	public static void clearTracedCommands() {
+		spyDriverAdapter.clearTracedCommandList();
 	}
 }

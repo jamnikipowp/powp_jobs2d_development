@@ -1,5 +1,6 @@
 package edu.kis.powp.jobs2d.drivers.adapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.kis.powp.jobs2d.Job2dDriver;
@@ -9,10 +10,14 @@ import edu.kis.powp.jobs2d.command.SetPositionCommand;
 
 public class SpyDriverAdapter implements Job2dDriver {
 
-	List<DriverCommand> tracedCommandsList;
+	private List<DriverCommand> tracedCommandsList;
 	
-	public SpyDriverAdapter(List<DriverCommand> commands) {
-		this.tracedCommandsList = commands;
+	public List<DriverCommand> getTracedCommandsList() {
+		return tracedCommandsList;
+	}
+
+	public SpyDriverAdapter() {
+		this.tracedCommandsList = new ArrayList<DriverCommand>();
 	}
 
 	@Override
@@ -23,6 +28,10 @@ public class SpyDriverAdapter implements Job2dDriver {
 	@Override
 	public void operateTo(int x, int y) {
 		tracedCommandsList.add(new OperateToCommand(x, y));
+	}
+	
+	public void clearTracedCommandList() {
+		this.tracedCommandsList.clear();
 	}
 
 	@Override
